@@ -6,4 +6,4 @@ This repository includes the files for
 - training machine learning model
 - arduino software
 - data collection
-- final GUI
+- GUI

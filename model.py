@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 import joblib
 
 # Load datasets
-train_df = pd.read_csv("C:/Users/jiawe/Desktop/data_processing/train.csv")
-val_df = pd.read_csv("C:/Users/jiawe/Desktop/data_processing/val.csv")
-test_df = pd.read_csv("C:/Users/jiawe/Desktop/data_processing/test.csv")
+train_df = pd.read_csv("train.csv")
+val_df = pd.read_csv("val.csv")
+test_df = pd.read_csv("test.csv")
 
 # Parameters
 window_size = 25

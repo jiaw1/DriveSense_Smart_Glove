@@ -1,0 +1,3 @@
+#define SECRET_SSID "HUAWEI P30 Pro"
+#define SECRET_PASS "20010509"
+#define SECRET_IP "192.168.43.86"

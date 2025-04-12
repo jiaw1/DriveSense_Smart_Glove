@@ -34,7 +34,7 @@ void setup() {
   size(1200, 800);
   
   // Load and resize background
-  bg = loadImage("thema.png");
+  bg = loadImage("bg.png");
   bg.resize(width, height);
   
   // Load and resize function images

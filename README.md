@@ -14,4 +14,6 @@ This repository includes the files for
 - graphical user interface
   - GUI
 
-Additional files in this repository are for the website of this project. The website for this project can be found here: 
+Additional files in this repository are for the website of this project. 
+
+The website for this project can be found here: 

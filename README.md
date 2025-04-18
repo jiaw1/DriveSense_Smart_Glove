@@ -3,7 +3,8 @@ Project for course ELEC-E7840 Smart Wearables.
 
 This repository includes the files for
 
-- training machine learning model: main
+- training machine learning model:
+  - main
 - arduino software: arduino
 - data collection: train, val and test
 - graphical user interface: GUI

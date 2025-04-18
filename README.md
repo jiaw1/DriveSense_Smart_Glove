@@ -17,6 +17,6 @@ This repository contains all the files sorted into specific folder(s) for
 
 Additional files in this repository are for the project website.
 
-The project website can be accessed from this link: 
+The project website can be accessed from the following link: 
 
 https://jiaw1.github.io/DriveSense_Smart_Glove

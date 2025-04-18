@@ -1,0 +1,84 @@
+<h2>Garment Design</h2>
+<p><strong>Contents:</strong></p>
+<ol>
+    <li><a href="#sec1">Sensor Placement</a></li>
+    <li><a href="#sec2">Circuit Design</a></li>
+    <li><a href="#sec3">Making Process</a></li>
+</ol>
+<h5 id="sec1">1. Sensor Placement</h5>
+<p>After identifying the sensors to be used, we needed to determine where each sensor would be placed. 
+    First, we decided to place a large conductive sensor on the upper part of the palm, nearly covering the entire area, to make contact with the sensors on the fingertips.</p>
+<p>Next, for the thumb, we found through testing that it was difficult for the thumb to touch the palm. 
+    Therefore, we placed a bending sensor on the back of the thumb to detect whether it was bent. 
+    However, since the thumb tip is involved in controlling volume and play/pause functions, we also placed a conductive sensor on it.</p>
+<p>To ensure the most comfortable sliding experience, we positioned three pressure sensors on the side of the index finger, allowing the thumb to slide over them.</p>
+<p>A conductive sensor was placed on the tip of the index finger, enabling the play/pause function through a tap with the thumb.</p>
+<p>Next is the pinky finger. 
+    For the “accept call” function, although we initially expected the pinky to remain straight when making this gesture, we discovered that it bends to some extent. 
+    Therefore, a bending sensor is needed to detect the degree of bending and determine the pinky’s posture. 
+    As a result, a bending sensor was placed on the back of the pinky finger.</p>
+<p>The sensors mentioned above were the ones we considered essential. 
+    To reduce costs and keep the design as simple as possible, we aimed to achieve accurate gesture detection with the fewest sensors. 
+    After discussion, we found that placing a conductive sensor on just one of the fingertips without a conductive sensor would be sufficient for detecting all gestures. 
+    The final decision was to place it on the pinky finger.</p>
+<h5 id="sec2">2. Circuit Design</h5>
+<p>The circuit of our smart glove is powered by a battery through the Arduino, which supplies 3.3 V (VCC) and ground (GND) to all components. 
+    All sensors are connected using a voltage divider configuration, where the varying resistance of the sensors is converted into measurable voltage levels at the Arduino analog input pins.</p>
+<p>For the contact sensors, two 10 Ω resistors are used. 
+    Each resistor connects between VCC and the analog pin, and a patch of conductive fabric is placed in parallel between the analog pin and GND. 
+    When the conductive fabric patches (e.g., on thumb and middle finger) make contact, the resistance drops significantly. 
+    This completes the circuit and allowes the current to flow. This drop in resistance is detected as a voltage change by the Arduino.</p>
+<p>The bending sensors are knitted from resistive yarn and have one end connected to GND. 
+    The other end connects both to a 2 kΩ resistor and to an analog input pin, with the resistor further connected to VCC. 
+    As the glove bends, the yarn stretches, this causes its resistance to change. 
+    This alters the voltage at the analog pin according to the degree of bending.</p>
+<p>Similarly, the three piezoresistive sensors are connected using 100 Ω resistors in the same voltage divider setup. 
+    These sensors are sensitive to pressure, and when pressed, their resistance decreases, which results in an increased voltage at the analog pin.</p>
+<p>The resistor values were chosen based on the usual unpressed resistance of each sensor type, to make sure good voltage resolution and responsiveness. 
+    For example, the piezoresistive sensors have base resistances near 120 Ω, so 100 Ω resistors were selected to get good sensitivity. 
+    The same logic was applied for the bending and contact sensors.
+    The circuit design of our smart glove is presented in <a href="#fig1">Figure 1</a>.</p>
+<figure id="fig1" class="figure">
+    <img src="/figures/circuit.png" alt="" />
+    <figcaption>Figure 1: Circuit of DriveSense smart glove.</figcaption>
+</figure>
+<p>When we stitched the sensors into the glove, we also marked their wires using different colors so that they can be easily identified and connected to the Arduino board. 
+    <a href="#fig1">Figure 2</a> shows the detailed coloring for each sensor.</p>
+<figure id="fig2" class="small_figure">
+    <img src="/figures/wires.png" alt="" />
+    <figcaption>Figure 2: Wires Table.</figcaption>
+</figure> 
+<h5 id="sec3">3. Making Process</h5>
+<p>After designing the circuit, we began making the glove. 
+    Overall, we created two versions of the glove. 
+    After completing the first version, we were not satisfied with it, so we made a second version. 
+    Below is the making process of the first version, divided into the conductive sensor <a href="#fig3">Figure 3</a> and bending sensor <a href="#fig4">Figure 4</a> sections. </p>
+<figure id="fig3" class="figure">
+    <img src="/figures/conductive_sensor.png" alt="" />
+    <figcaption>Figure 3: Making Process of the First Version Conductive Sensor.</figcaption>
+</figure> 
+<figure id="fig4" class="figure">
+    <img src="/figures/bending_sensor.png" alt="" />
+    <figcaption>Figure 4: Making Process of the First Version Bending Sensor.</figcaption>
+</figure> 
+<p>After completing the first version of the glove, we found that its appearance and comfort did not meet our expectations, and its functionality was too simple, as it only recognized numbers represented by hand gestures. 
+    Therefore, we created a new version, which is our current version of the glove (the previously mentioned objective, sensors, and circuit are all for this version). 
+    The making process of the current version of the glove is presented in <a href="#fig5">Figure 5</a>.</p>
+<figure id="fig5" class="figure">
+    <img src="/figures/making_process.png" alt="" />
+    <figcaption>Figure 5: Updated Making Process of DriveSense Smart Glove.</figcaption>
+</figure> 
+<p>When making the conductive sensor, we initially used regular conductive fabric. 
+    However, due to its poor stretchability, we eventually removed the original conductive fabric and chose stretchy conductive fabric as a replacement. 
+    We stitched the conductive fabric onto the designated positions using normal yarn and connected them with conductive yarn.</p>
+<p>The making of the bending sensor also went through several iterations. 
+    Initially, we created the bending sensor by layering conductive yarn, conductive fabric, Velostat, and normal fabric. 
+    However, after sewing it onto the glove, we found that its thickness restricted the free movement of the fingers. 
+    Therefore, we eventually adopted a bending sensor knitted from stretchy conductive yarn, which we stitched to the inner side of the glove and covered with fabric to ensure comfort.</p>
+<p>As for the pressure sensor, the fabrication method followed what was taught in class. 
+    However, since it was to be placed on the side of the finger, we needed to make very small pressure sensors and ensure they functioned properly. 
+    After several attempts, we successfully made them.</p>
+<p>Once all the sensors were completed, we stitched a resistor onto the back of the hand near the wrist and connected all the sensors to it using conductive yarn. 
+    The resistor was then connected to the Arduino, forming a complete circuit. 
+    Afterwards, we connected it to a computer to test its functionality. 
+    Throughout the iterative process, we learned how to strike a balance between design, functionality, and cost.</p>

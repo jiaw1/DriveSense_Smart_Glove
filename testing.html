@@ -1,0 +1,49 @@
+<h2>User Testing</h2>
+<p>While collecting the data and testing the glove, the participants were asked the following questions:</p>
+<ul>
+    <li>Ease of wearing and removal – Is the glove easy to put on and take off?</li>
+    <li>Comfort and fit – Does the glove feel comfortable?</li>
+    <li>Comfort and fit – Does the glove feel comfortable? Are there any pressure points or discomfort? Does it fit well, or is it too tight or loose?</li>
+    <li>Flexibility and range of motion – Does the glove allow natural hand movement? Does it affect fine motor tasks?</li>
+    <li>Material feel – How does the glove’s texture feel against the skin? Is it pleasant to wear?</li>
+    <li>Weight – Does the glove feel lightweight?</li>
+</ul>
+<p>The wearing experience of the smart glove received mixed but insightful feedback. 
+    Most testers appreciated the glove’s ease of putting on and taking off, as well as its basic comfort. 
+    In particular, the use of fabric coverings and silicone padding helped reduce discomfort caused by wiring. 
+    However, some testers pointed out the fragility of the prototype, requiring extra care during use. 
+    They also noted slight resistance when bending fingers, which was suspected to be caused by overly tight conductive yarn.</p>
+<p>Some testers praised the glove’s lightweight design but mentioned that the fabric felt somewhat stiff, expressing a preference for softer materials to improve skin-friendliness. 
+    Additional feedback highlighted detail-related issues: the wrist strap was too thick, causing a sense of pressure after prolonged wear; 
+    although the glove itself was light, the attached Arduino module disrupted overall balance and felt slightly cumbersome. 
+    There was also a sensation of foreignness at the back of the index finger due to the sensor edges not being smoothly finished.</p>
+<p>Notably, the glove’s visual design received positive feedback, with hidden wiring maintaining a clean appearance. 
+    Future improvements will prioritize reducing the size of the main control module to better distribute weight and enhancing the breathability of the wrist strap, while preserving the current ease of use and aesthetic appeal.</p>
+<figure id="fig1" class="figure">
+    <img src="/figures/user_testing.png" alt="" />
+    <figcaption>Figure 1: User Testing Process.</figcaption>
+</figure> 
+<p>To evaluate the performance and gesture recognition accuracy of the glove, we conducted a small user study involving five different users. 
+    Each user was asked to perform all the defined gestures one by one. 
+    Every gesture was performed only once by each user, and the system response was recorded to assess how well the model could correctly identify the gesture. 
+    The summarized results of this test, including the recognition accuracy for each gesture, are shown in the table below.</p>
+<li>Recognition accuracy table</li>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Gesture</th>
+        <th>Success</th>
+        <th>Fail</th>
+        <th>Accuracy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Play/Pause</td><td>3</td><td>2</td><td>60 %</td></tr>
+      <tr><td>Next song</td><td>4</td><td>1</td><td>80 %</td></tr>
+      <tr><td>Previous song</td><td>3</td><td>2</td><td>60 %</td></tr>
+      <tr><td>Reject Call</td><td>5</td><td>0</td><td>100 %</td></tr>
+      <tr><td>Accept Call</td><td>4</td><td>1</td><td>80 %</td></tr>
+      <tr><td>Emergency Contact</td><td>2</td><td>3</td><td>40 %</td></tr>
+      <tr><td>Repeat song</td><td>4</td><td>1</td><td>80 %</td></tr>
+    </tbody>
+</table>

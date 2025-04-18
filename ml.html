@@ -1,0 +1,186 @@
+<h2>Machine Learning Model</h2>
+<p><strong>Contents:</strong></p>
+<ol>
+  <li><a href="#sec1">Data Collection and Processing</a></li>
+  <li><a href="#sec2">Test Results</a></li>
+</ol>
+<h5 id="sec1">1. Data Collection and Preprocessing</h5>
+<p>To train the machine learning model, we collected gesture data from a total of 15 users, including the two team members. 
+    Data was collected separately for each gesture and each repetition. 
+    For example, when collecting data from User 1, they performed the first gesture (Play/Pause) five times. 
+    Each time, the data was saved in a separate file. 
+    The same process was repeated for the next gesture (Next Song), again saving each attempt in a separate file. 
+    This was done for all defined gestures, and then repeated for all 15 users.</p>
+<p>Each data file contained 16 features:</p>
+<p><span style="color: rgb(0, 161, 37);"><em>"ts,s0,s1,s2,s3,s4,s5,s6,v0,v1,v2,v3,v4,v5,v6,label"</em></span></p>
+<p>The first feature was a timestamp and the last one was a label. 
+    There a total of 14 features between the timestamp and the label. 
+    These features are divided into two groups: the first 7 features represent the resistance values of sensors S0 to S6, and the following 7 features correspond to the voltage values V0 to V6, which were calculated from the corresponding resistance values. 
+    The timestamp column was dropped before training. 
+    For labeling the gestures, we analyzed the sensor value ranges and identified the portion of data that actually represented the gesture being performed. 
+    These rows were labeled with a unique gesture number, and all other rows were labeled as 0 to indicate "no gesture." 
+    This labeling was done using a custom script that applied thresholding rules to detect gesture activity in the sensor readings.</p>
+<p>During the process, we found that some users' data was not usable due to errors during collection or meaningless values. 
+    These files were removed from the dataset to maintain data quality.</p>
+<p>Finally, we split the cleaned dataset into training, validation, and testing sets. 
+    Data from 4 users was used for training, 1 user for validation, and 2 users for testing the model's performance.</p>
+<p>The summary of our datasets are presented as follows:</p>
+<li>Training set</li>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Count</th>
+        <td>938</td>
+        <td>128</td>
+        <td>182</td>
+        <td>154</td>
+        <td>128</td>
+        <td>52</td>
+        <td>148</td>
+        <td>190</td>
+      </tr>
+    </tbody>
+</table>
+<li>Validation set</li>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Count</th>
+        <td>220</td>
+        <td>41</td>
+        <td>65</td>
+        <td>42</td>
+        <td>53</td>
+        <td>40</td>
+        <td>35</td>
+        <td>37</td>
+      </tr>
+    </tbody>
+</table>
+<li>Test set</li>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Count</th>
+        <td>743</td>
+        <td>64</td>
+        <td>112</td>
+        <td>102</td>
+        <td>89</td>
+        <td>49</td>
+        <td>94</td>
+        <td>106</td>
+      </tr>
+    </tbody>
+</table>
+<p>For best model configuration, we compared SVM, KNN and Random Forest machine learning models with different parameters. 
+    Finally, the best model selected is a SVM model with the following parameters:</p>
+<ul>
+    <li>Kernel: rbf</li>
+    <li>C: 1</li>
+    <li>Gamma: scale</li>
+</ul>
+<h5 id="sec2">2. Test Results</h5>
+<p>Using the SVM model we have chosen, we get the following result:</p>
+<li>Performance summary</li>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Validation Accuracy</td>
+        <td>92.12%</td>
+      </tr>
+      <tr>
+        <td>Test Accuracy</td>
+        <td>89.48%</td>
+      </tr>
+    </tbody>
+</table>
+<p>Per-class recognition accuracy</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Accuracy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td>99.33%</td></tr>
+      <tr><td>1</td><td>89.06%</td></tr>
+      <tr><td>2</td><td>99.11%</td></tr>
+      <tr><td>3</td><td>58.82%</td></tr>
+      <tr><td>4</td><td>58.43%</td></tr>
+      <tr><td>5</td><td>81.63%</td></tr>
+      <tr><td>6</td><td>55.32%</td></tr>
+      <tr><td>7</td><td>100.00%</td></tr>
+    </tbody>
+</table>
+<p>Based on the results and data presented in the tables, we observed a validation accuracy of 92% and a text accuracy of nearly 90%, which can be considered as strong outcomes. 
+    These values demonstrate the effectiveness of the model in handling the gesture recognition task.</p>
+<p>However, when examining the gesture accuracy for each individual gesture, we found that while some gestures had very high accuracy, others performed at a slightly lower level. 
+    Upon investigation, the primary factor contributing to this discrepancy appeared to be the limited amount of data used during training.</p>
+<p>After expanding the dataset by collecting additional data from one or two more users, we observed a notable improvement in the accuracy of all gestures. 
+    This suggests that increasing the number of users and, consequently, the diversity of the dataset could lead to a more robust and accurate model. 
+    With a larger dataset, we expect that the gesture recognition accuracy, both for individual gestures and overall performance, will increase significantly, further enhancing the reliability and effectiveness of the system.</p>
+<p>After training the model, the confusion matrix is shown in <a href="#fig1">Figure 1</a>.</p>
+<figure id="fig1" class="figure">
+    <img src="/figures/confusion_matrix.png" alt="" />
+    <figcaption>Figure 1: Confusion Matrix.</figcaption>
+</figure> 
+<p>We evaluated our gesture recognition model using an SVM classifier, and the results are shown in the confusion matrix above. 
+    The model performed very well overall, especially for some gestures. 
+    For instance, the "no gesture" class (label 0) had the highest accuracy, with 738 out of 743 samples correctly predicted. 
+    This shows that the model is highly reliable at identifying when no gesture is being made. 
+    Gesture 2 and gesture 7 also showed very strong performance, with almost all samples correctly classified. 
+    Gesture 2 was predicted correctly 111 times out of 112, and gesture 7 was predicted correctly 106 times with no major confusion.</p>
+<p>However, some gestures were more challenging for the model. 
+    Gesture 3, for example, was correctly classified 60 times but also got confused with gesture 0 (28 times), gesture 6 (9 times), and a few others. 
+    Similarly, gesture 4 had 52 correct predictions but was often misclassified as gesture 2 (32 times), suggesting those two might have similar sensor patterns. 
+    Gesture 6 also faced confusion, especially with gesture 2 and gesture 1. 
+    These misclassifications indicate that certain gestures might be too similar in motion or signal to be clearly separated by the model.</p>
+<p>In summary, while the SVM model performs very well for several gestures, there is still room for improvement in distinguishing between similar ones like gestures 2, 3, 4, and 6. 
+    Overall, the results are promising and show that the model can accurately recognize most gestures, with only a few needing better separation or more training data.</p>

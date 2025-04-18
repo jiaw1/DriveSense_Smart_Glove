@@ -1,0 +1,53 @@
+<h2>Software Design</h2>
+<p><strong>Contents:</strong></p>
+<ol>
+    <li><a href="#sec1">Communication Protocols</a></li>
+    <li><a href="#sec2">User Interface</a></li>
+</ol>
+<h5 id="sec1">1. Communication Protocols</h5>
+<p>We started collect data via USB cable from Arduino hardware and then saved the data as CSV file for further data processing. 
+    Initially we used Arduino IDE to upload code to Arduino board and then Processing IDE to receive and save the incoming data. 
+    Later as we wanted to improve wearability and novelty, we improved our Arduino software to enable wireless communication using Wi-Fi. 
+    In this case, the smart glove can operate wirelessly without USB cable and the power supplier is a small 3.3 mAh lithium battery. 
+    Initially, we attempted to use a Flask server to receive sensor data from the Arduino over Wi-Fi. 
+    This setup worked in principle, but we observed significant latency and jitter, which made real-time data streaming unreliable. 
+    This is likely due to Flask being optimized for handling HTTP requests, not persistent low-latency TCP communication. 
+    We could not fixed the problem in short time, so we switched to using a Processing sketch as a TCP server.</p>
+<p>Processing allows for direct socket communication using the Server and Client classes, which significantly reduced latency and jitter. 
+    This setup provided a more stable and responsive environment for real-time sensor data visualization and logging. 
+    We are using Arduino MKR WiFi 1010, which already integrates Wi-Fi module, so we can easily implement a client to server communication via TCP protocol using WiFiNINA.h library. 
+    In our project we are using server port 5000 and client.println() as a sending method. 
+    We create a WiFiClient object and the connect() function from WiFiClient establishes a TCP connection to the specified server and port. 
+    In Processing IDE, the server listens on port 5000 and waits for incoming sensor data which is read as CSV-formatted strings. 
+    We then saved these data locally to a CSV file for later use. </p>
+<p>Furthermore, as DriveSense Smart Glove is designed for controlling phone functions while driving a car, we decided to further implement a user interface to simulate car dashboard display. 
+    We designed our initial UI using Figma and then used Processing IDE to implement the UI. 
+    In real user testing, Processing IDE is using socket connection to send received data flows to Visual Studio Code via port 6000. 
+    Once the data is received, it is then forwarded to a Python backend in Visual Studio Code running a machine learning model. 
+    This model processes the incoming sensor values in real-time to recognize gestures. 
+    After prediction, the output is sent back to Processing IDE, which updates the user interface by showing a visual feedback that reflects the model's decision and hand gesture. 
+    Our software architecture is real-time and modular as shown in <a href="#fig1">Figure 1</a> .</p>
+<figure id="fig1" class="figure">
+    <img src="/figures/architecture.png" alt="" />
+    <figcaption>Figure 1: Software Architecture.</figcaption>
+</figure> 
+<h5 id="sec2">2. User Interface</h5>
+<p>We created a simple graphical user interface (GUI) that looks like a car music player screen as presented in <a href="#fig2">Figure 2</a> and <a href="#fig3">Figure 3</a>. 
+    This interface helps the user see what action is happening when they make a gesture with the glove.</p>
+<p>The GUI shows basic music controls like play, pause, and song information. 
+    When the user performs a gesture (for example, double-tap to pause the song), the screen updates right away to show the change — like switching from a play icon to pause, or showing the next song.</p>
+<figure id="fig2" class="figure">
+    <img src="/figures/ui_default.png" alt="" />
+    <figcaption>Figure 2: User Interface Design: Default Mode.</figcaption>
+</figure> 
+<figure id="fig3" class="figure">
+    <img src="/figures/ui_full.png" alt="" />
+    <figcaption>Figure 3: User Interface Design: All Gestures Enabled.</figcaption>
+</figure> 
+<p>It also shows call features. 
+    When there is an incoming call, the caller’s name appears on the screen, along with icons for accepting or rejecting the call. 
+    When the user makes the right gesture, the screen changes to show the selected action.</p>
+<p>There is also a part of the interface for emergency situations. 
+    When the emergency gesture is made, the interface shows a clear symbol that this action was triggered.</p>
+<p>We made this GUI using the Processing IDE. The connection between the glove and the interface was done using Python code in Visual Studio Code. 
+    All the images in the interface are linked with the Python code, so they change as gestures are detected.</p>

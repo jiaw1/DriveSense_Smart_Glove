@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveSense Smart Glove</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>DriveSense Smart Glove</h1>
+    <h3>— ELEC-E7840 Smart Wearables 2025 Spring Project —</h3>
+    <p>Authors: Wenying Jia, Jannat Akbar</p>
+  </header>
+
+  <nav>
+    <button onclick="loadPage('objective.html', this)">Objective</button>
+    <button onclick="loadPage('sensor.html', this)">Sensor</button>
+    <button onclick="loadPage('garment.html', this)">Garment</button>
+    <button onclick="loadPage('software.html', this)">Software</button>
+    <button onclick="loadPage('ml.html', this)">Machine Learning</button>
+    <button onclick="loadPage('testing.html', this)">User Testing</button>
+    <button onclick="loadPage('challenges.html', this)">Challenges & Solutions</button>
+    <button onclick="loadPage('future.html', this)">Future Development</button>
+  </nav>
+
+  <main id="content">
+    <p>Select a section to view its content.</p>
+  </main>
+
+  <script>
+    function loadPage(page, button = null) {
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('content').innerHTML = data;
+  
+          // Remove 'active' class from all buttons
+          document.querySelectorAll('nav button').forEach(btn => {
+            btn.classList.remove('active');
+          });
+  
+          // Add 'active' class to clicked button
+          if (button) {
+            button.classList.add('active');
+          }
+        });
+    }
+  
+    // Default page
+    window.onload = function () {
+      const defaultBtn = document.querySelector('nav button');
+      loadPage('objective.html', defaultBtn);
+      defaultBtn.classList.add('active');
+    };
+  </script>  
+</body>
+<div>
+  <footer>
+    <div class="footer-container">
+      <div class="column-left">
+        <p>&copy; ELEC-E7840 Smart Wearables 2025 Spring Project: DriveSense Smart Glove. All rights reserved.</p>
+      </div>
+      <div class="column-right">
+        <figure class="logo">
+          <img src="/figures/aalto.png" alt="" />
+        </figure>    
+      </div>
+    </div>
+  </footer>
+</div>
+</html>

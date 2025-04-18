@@ -1,0 +1,142 @@
+<h2>Sensor Design</h2>
+<p><strong>Contents:</strong></p>
+<ol>
+    <li><a href="#sec1">Gesture Design</a></li>
+    <li><a href="#sec2">Identifying Sensor Types</a></li>
+    <li><a href="#sec3">Sensor Measurements</a></li>
+</ol>
+<h5 id="sec1">1. Gesture Design</h5>
+<p>The functions that our glove can control are:</p>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/playpause.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 1 - Play / Pause music</strong>
+            <p>A double tap between the thumb and middle finger is used to play or pause the music. 
+                The same gesture toggles between the two states.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/next.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 2 - Next song</strong>
+            <p>To select the next track, the user makes a “V” sign (victory symbol) using the index and middle fingers.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/previous.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 3 - Previous song</strong>
+            <p>A single tap between the thumb and middle finger plays the previous song.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/reject.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 4 - Reject call</strong>
+            <p>When there is an incoming call, making a closed fist gesture will reject the call.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/accept.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 5 - Accept call</strong>
+            <p>To answer a call, the user presses the lower part of the index finger using the thumb. 
+                A piezoresistive sensor is placed at this location to detect the press.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/emergency.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 6 - Emergency call</strong>
+            <p>For instantly dialing an emergency contact, the user straightens the hand, then bends all fingers to touch the palm, and repeats this movement. 
+                This is inspired by the universal hand gesture used to signal emergency or request help.</p>
+        </div>
+    </div>
+</div>                   
+<div class="container">
+    <div class="column--left">
+        <video controls>
+            <source src="/videos/repeat.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="column--right">
+        <div class="box">
+            <strong>Gesture 7 - Repeat song</strong>
+            <p>To set a song to repeat, the user presses the tip of the index finger with the thumb and releases it.
+                The same gesture can be also used to exit repeat mode.</p>
+        </div>
+    </div>
+</div>  
+<p>To control media and phone functions using the wearable glove, we defined a set of hand gestures that correspond to specific commands. 
+    These gestures were selected to be easy to perform using natural finger movements.</p>
+<h5 id="sec2">2. Identifying Sensor Types</h5>
+<p>In our designed gestures, the key to distinguishing between different gestures is recognizing whether each finger is bent or touching. 
+    In this case, we utilized two methods of detection. 
+    The first method is using contact sensors, which are placed on the fingertips and the palm (except for the thumb). 
+    When a finger bends, the fingertip touches the palm, closing the circuit. 
+    This change in resistance allows us to detect whether the finger is touching. 
+    The second method involves using a bending sensor, which is directly placed on the finger. 
+    When the finger bends and causes the bending sensor to deform, the resistance reading changes, enabling the detection of finger bending.</p>
+<p>The only exception in the gestures is for controlling the increase/decrease of volume. 
+    We aimed to achieve this through an intuitive sliding motion of the finger. 
+    But later we used these piezo-resistive sensors in some other gestures to control different functions of our music player.</p>
+<h5 id="sec3">3. Sensor Measurements</h5>
+<p>All sensor readings are based on resistance values measured using Arduino analog pins. 
+    We used two contact sensors, which work like switches. 
+    When they are touched, the circuit closes, and the resistance value drops immediately. 
+    Normally, their resistance is around 900 Ω, but when contact is made, it drops to a range of 100 Ω to 300 Ω. 
+    These values were consistent across both contact sensors.</p>
+<p>Next, we used two bending sensors that we knitted ourselves using resistive yarn. 
+    Their resistance changes when the yarn is stretched or bent. 
+    When not stretched, the resistance usually stays between 850 Ω and 950 Ω. 
+    When stretched during finger bending, the resistance drops to around 600 Ω to 800 Ω. 
+    The exact values depend on the hand size of the person wearing the glove. 
+    For example, when worn by male users, the sensors stretch more, so resistance drops further.</p>
+<p>We also used three piezoresistive sensors. Their resistance also changes when pressure is applied. 
+    Due to slight differences in the way each sensor was laminated, their readings vary a bit. 
+    The first sensor has a resting resistance of around 800 Ω, which drops to 650–750 Ω when pressed. 
+    The second one is usually between 750 Ω and 800 Ω when not pressed and drops to around 700–730 Ω under pressure. 
+    The third sensor stays between 850 Ω and 900 Ω when not pressed and drops to 750–800 Ω when pressed. 
+    These readings helped us define the thresholds for gesture detection in the Arduino code.</p>

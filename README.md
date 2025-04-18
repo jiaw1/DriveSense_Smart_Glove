@@ -2,7 +2,7 @@
 
 Project for course ELEC-E7840 Smart Wearables.
 
-This repository contains all the files sorted into specific folders for
+This repository contains all the files sorted into specific folder(s) for
 
 - training machine learning model:
   - main

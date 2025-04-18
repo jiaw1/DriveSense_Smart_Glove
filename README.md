@@ -1,7 +1,8 @@
 # DriveSense_Smart_Glove
+
 Project for course ELEC-E7840 Smart Wearables.
 
-This repository includes the files for
+This repository contains all the files sorted into specific folders for
 
 - training machine learning model:
   - main

@@ -1,3 +1,5 @@
-# Test dataset for machine learning model
+# Test dataset
 
-- Consists of data from two users.
+All datasets here are included in test dataset for machine learning model.
+
+- Consists of data from two users

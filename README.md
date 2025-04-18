@@ -15,6 +15,6 @@ This repository contains all the files sorted into specific folder(s) for
 - graphical user interface
   - GUI
 
-Additional files in this repository are for the website of this project. 
+Additional files in this repository are for the project website.
 
-The website for this project can be found here: 
+The project website can be accessed from this link: 

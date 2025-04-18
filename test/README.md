@@ -1,3 +1,3 @@
-Test dataset for machine learning model
+Test dataset for machine learning model:
 
-- This consists of data from two users.
+- Consists of data from two users.

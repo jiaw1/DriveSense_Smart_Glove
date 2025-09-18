@@ -23,4 +23,4 @@ https://jiaw1.github.io/DriveSense_Smart_Glove
 
 Copyright (c) 2025 Wenying Jia
 
-All rights reserved. This code is the sole work of the author unless otherwise specified.
+All rights reserved. This code is the sole work of the author.
